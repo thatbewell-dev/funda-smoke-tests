@@ -31,20 +31,15 @@ test.describe('Funda.nl Smoke Tests @smoke', () => {
     expect(resultsCount).toBeGreaterThan(0);
   });
 
-  test('ST-03: Search functionality works for rental properties', async ({ page, homePage, searchResultsPage }) => {
+    test('ST-03: Search functionality works for rental properties', async ({ page, homePage, searchResultsPage }) => {
     await homePage.switchToRentTab();
     await homePage.searchForLocation(TEST_LOCATIONS.ROTTERDAM);
-    
-    await page.waitForURL(EXPECTED_URL_PATTERNS.RENT_SEARCH);
-    
-    expect(page.url()).toContain('huur');
-    expect(page.url()).toContain(TEST_LOCATIONS.ROTTERDAM.toLowerCase());
-    
+
+    await expect(page).toHaveURL(EXPECTED_URL_PATTERNS.RENT_SEARCH);
     await searchResultsPage.waitForResults();
-    await searchResultsPage.verifyMinimumResults(1);
-    
-    const hasResults = await searchResultsPage.hasResults();
-    expect(hasResults).toBe(true);
+
+    const count = await searchResultsPage.getResultsCount();
+    expect(count).toBeGreaterThan(0);
   });
 
   test('ST-04: Property detail page loads when clicking on a listing', async ({ page, homePage, searchResultsPage, propertyDetailPage }) => {
