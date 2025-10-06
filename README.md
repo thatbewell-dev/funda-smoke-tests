@@ -42,7 +42,5 @@ npx playwright show-report
 - **ST-04 · Open first listing → details render**  
   Results are useless if the details page doesn’t load properly. Clicking the first listing and seeing title/price/media proves navigation works and the template can bind real data.
 
-- **ST-05 · Map ↔ List toggle keeps the query**  
-  Users switch views a lot. Toggling to Map and back should not lose filters or area. This catches the classic “blank map / lost state” regression with one quick check.
-
-  
+**ST-05 · Buy ↔ Rent tabs keep mode & state**  
+  Switching tabs and running a quick search should route to the correct mode (`/koop` vs `/huur`) without losing the area/filters. This catches mode desyncs or state loss quickly.
