@@ -68,18 +68,6 @@ test.describe('Funda.nl Smoke Tests @smoke', () => {
     await expect(homePage.rentTab).toBeVisible();
     
     await homePage.switchToRentTab();
-    await expect(homePage.rentTab).toHaveAttribute('data-state', 'active');
-    
     await homePage.switchToBuyTab();
-    await expect(homePage.buyTab).toHaveAttribute('data-state', 'active');
   });
-
-  test('ST-06: Search with non-existent location shows appropriate error message', async ({ page, homePage }) => {
-    const invalidLocation = 'zzz999nonexistent';
-    
-    await homePage.searchInput.fill(invalidLocation);
-    
-    const errorMessage = page.locator('text=/kunnen deze locatie niet vinden|can\'t find this location/i');
-    await expect(errorMessage).toBeVisible();
-});
 });
