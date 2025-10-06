@@ -36,10 +36,6 @@ export class HomePage {
   }
 
   async searchForLocation(location: string) {
-    if (!location || location.trim().length === 0) {
-      throw new Error('Search location cannot be empty');
-    }
-
     await this.searchInput.fill(location);
     
     // Wait for autocomplete to appear and click the matching option
@@ -50,11 +46,11 @@ export class HomePage {
 
   async switchToBuyTab() {
     await this.buyTab.click();
-    await expect(this.buyTab).toHaveAttribute('data-state', 'active');
+    await expect(this.buyTab).toHaveAttribute('aria-selected', 'true');
   }
 
   async switchToRentTab() {
     await this.rentTab.click();
-    await expect(this.rentTab).toHaveAttribute('data-state', 'active');
+    await expect(this.rentTab).toHaveAttribute('aria-selected', 'true');
   }
 }

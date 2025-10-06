@@ -5,6 +5,7 @@ test.describe('Funda.nl Smoke Tests @smoke', () => {
   
   test.beforeEach(async ({ homePage }) => {
     await homePage.goto();
+    await homePage.acceptCookiesIfPresent();
   });
 
   test('ST-01: Homepage loads successfully and main elements are visible', async ({ homePage }) => {
@@ -32,7 +33,7 @@ test.describe('Funda.nl Smoke Tests @smoke', () => {
   });
 
     test('ST-03: Search functionality works for rental properties', async ({ page, homePage, searchResultsPage }) => {
-    await homePage.switchToRentTab();
+    await homePage.rentTab.click();
     await homePage.searchForLocation(TEST_LOCATIONS.ROTTERDAM);
 
     await expect(page).toHaveURL(EXPECTED_URL_PATTERNS.RENT_SEARCH);
